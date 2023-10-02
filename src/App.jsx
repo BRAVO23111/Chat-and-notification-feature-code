@@ -21,7 +21,7 @@ function App() {
     setisAuth(false);
   };
   const backgroundImageStyle = {
-    backgroundImage: 'url("back.avif")',
+    backgroundImage: 'url("public/back.avif")',
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
@@ -35,7 +35,7 @@ function App() {
               <Chat room={room} />
             ) : (
               <div className="flex flex-col items-center justify-center font-montserrat font-bold">
-              <label className="text-lg mb-2">Enter Room No.</label>
+              <label className="text-lg mb-2">Create or Enter Room Code</label>
               <div className="flex space-x-2 ml-20">
                 <input
                   ref={inputRoomRef}
