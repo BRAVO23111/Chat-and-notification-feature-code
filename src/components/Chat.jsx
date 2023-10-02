@@ -11,10 +11,11 @@ import {
 import { auth, db } from "../firebase-config";
 import { toast } from "react-toastify";
 
+// ... Import statements ...
+
 const Chat = ({ room }) => {
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const [userPhotoURL, setUserPhotoURL] = useState(null);
   const messageRef = collection(db, "messages");
 
   useEffect(() => {
@@ -26,15 +27,14 @@ const Chat = ({ room }) => {
       });
       setMessages(messages);
     });
-    if (auth.currentUser.photoURL) {
-      setUserPhotoURL(auth.currentUser.photoURL);
-    }
+
     if (messages.length > 0) {
       toast.info('You have a new message!', {
         position: "top-right",
         autoClose: 10000, // Close the toast after 3 seconds
       });
     }
+
     return () => unsubscribe();
 
   }, [room]);
@@ -46,6 +46,7 @@ const Chat = ({ room }) => {
       text: newMessage,
       createdAt: serverTimestamp(),
       user: auth.currentUser.displayName,
+      avatar: auth.currentUser.photoURL,
       room,
     });
     setNewMessage("");
@@ -60,17 +61,13 @@ const Chat = ({ room }) => {
         <div className="mb-4 space-y-2">
           {messages.map((message) => (
             <div key={message.id} className="flex space-x-2">
-              <div className="flex space-x-2">
-                {userPhotoURL && (
-                  <img
-                    src={userPhotoURL}
-                    alt="User"
-                    className="w-8 h-8 rounded-full"
-                  />
-                )}
-                <div className="font-semibold">{message.user}:</div>
-                <div>{message.text}</div>
-              </div>
+              <img
+                src={message.avatar || "URL_TO_DEFAULT_AVATAR"} // Use the user's avatar or a default avatar URL
+                alt="User"
+                className="w-8 h-8 rounded-full"
+              />
+              <div className="font-semibold">{message.user}:</div>
+              <div>{message.text}</div>
             </div>
           ))}
         </div>

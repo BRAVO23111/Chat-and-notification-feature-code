@@ -11,6 +11,7 @@ const Cookie = new Cookies();
 
 function App() {
   const [isAuth, setisAuth] = useState(Cookie.get("auth-token"));
+  const[isphotoURL,setisphotoURL] =useState('')
   const [room, setRoom] = useState(null);
   const inputRoomRef = useRef(null);
 
@@ -56,7 +57,7 @@ function App() {
             </div>
           </>
         ) : (
-          <Auth setisAuth={setisAuth} />
+          <Auth setisAuth={setisAuth} setisphotoURL={setisphotoURL} />
         )}
       </div>
       <ToastContainer />

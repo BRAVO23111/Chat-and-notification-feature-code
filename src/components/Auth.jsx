@@ -9,6 +9,7 @@ const Auth = ({ setisAuth }) => {
     try {
       const result = await signInWithPopup(auth, Provider);
       Cookie.set('auth-token', result.user.refreshToken)
+      console.log(result.user.photoURL);
       setisAuth(true)
     } catch (err) {
       console.log("error")
