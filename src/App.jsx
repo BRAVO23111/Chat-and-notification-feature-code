@@ -20,32 +20,36 @@ function App() {
     Cookie.remove("auth-token");
     setisAuth(false);
   };
-
+  const backgroundImageStyle = {
+    backgroundImage: 'url("back.avif")',
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  };
   return (
-    <div className="bg-gray-100 min-h-screen p-4">
-      <div className="max-w-xl mx-auto bg-white p-4 rounded shadow-lg">
+    <div className="bg-gray-100 min-h-screen p-4 w-full font-montserrat" style={backgroundImageStyle}>
+      <div className="flex flex-col items-center justify-center h-full w-400px p-4 rounded shadow-lg mt-64 mr-200px ml-200px">
         {isAuth ? (
           <>
             {room ? (
               <Chat room={room} />
             ) : (
-              <div className="room">
-                <label className="text-lg font-semibold mb-2">
-                  Enter room number
-                </label>
-                <div className="flex space-x-2">
-                  <input
-                    ref={inputRoomRef}
-                    className="flex-grow border rounded py-2 px-3"
-                  />
-                  <button
-                    onClick={() => setRoom(inputRoomRef.current.value)}
-                    className="bg-blue-500 hover:bg-blue-600 text-white rounded-full py-2 px-4 transition duration-300 ease-in-out transform hover:scale-105"
-                  >
-                    Enter
-                  </button>
-                </div>
+              <div className="flex flex-col items-center justify-center font-montserrat font-bold">
+              <label className="text-lg mb-2">Enter Room No.</label>
+              <div className="flex space-x-2 ml-20">
+                <input
+                  ref={inputRoomRef}
+                  className="flex-grow border rounded py-2 px-3"
+                />
+                <button
+                  onClick={() => setRoom(inputRoomRef.current.value)}
+                  className="bg-blue-500 hover:bg-blue-600 text-white rounded-full py-2 px-4 transition duration-300 ease-in-out transform hover:scale-105"
+                >
+                  Enter
+                </button>
               </div>
+            </div>
+            
             )}
             <div className="mt-4">
               <button
