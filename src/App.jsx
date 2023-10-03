@@ -21,7 +21,7 @@ function App() {
     setisAuth(false);
   };
   const backgroundImageStyle = {
-    backgroundImage: 'url("public/back.avif")',
+    backgroundImage: 'url("https://media.istockphoto.com/id/1283724500/vector/social-media-seamless-pattern-doodle-style.jpg?s=612x612&w=0&k=20&c=oVZ7nnt1dHPQhGt4oQrZpVdldIjijwxG7misyIckvA4=")',
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
