@@ -1,15 +1,15 @@
-Chatty is a real-time chat application built using React and Firebase, designed to facilitate seamless communication and instant notifications between users. Whether you're connecting with friends, making new connections, or staying in touch with loved ones, Chatty makes chat and notifications easy and engaging.
+Connect is a real-time chat application built using React and Firebase, designed to facilitate seamless communication and instant notifications between users. Whether you're connecting with friends, making new connections, or staying in touch with loved ones, Connect makes chat and notifications easy and engaging.
 
 Objective
-The primary objective of Chatty is to create a robust real-time chat and notifications feature, providing users with the ability to send and receive chat messages instantly. Additionally, users should receive notifications for new matches (talk requests) and incoming messages. We've divided the project into two main components: frontend and backend.
+The primary objective of Connect is to create a robust real-time chat and notifications feature, providing users with the ability to send and receive chat messages instantly. Additionally, users should receive notifications for new matches (talk requests) and incoming messages. We've divided the project into two main components: frontend and backend.
 
 Features
 Frontend
-Real-Time Chat: Chatty's Chat component allows users to send and receive real-time messages, ensuring smooth and instant communication.
+Real-Time Chat: Connect's Chat component allows users to send and receive real-time messages, ensuring smooth and instant communication.
 
 Visually Appealing Interface: We've designed an aesthetically pleasing chat interface that aligns with the app's theme, ensuring an engaging user experience.
 
-React-Powered Real-Time Updates: Leveraging React, Chatty handles real-time message updates seamlessly, thanks to its integration with Firebase.
+React-Powered Real-Time Updates: Leveraging React, Connect handles real-time message updates seamlessly, thanks to its integration with Firebase.
 
 User-Friendly Chat Initiation: Initiating new chat conversations is a breeze, promoting user engagement and interaction.
 
@@ -18,7 +18,7 @@ Engaging Notifications: Chatty delivers clear and engaging notifications to keep
 <h1>Backend (Firebase)</h1>
 Firebase Firestore: We've set up Firebase Firestore to store chat messages, user data, and notifications securely.
 
-Real-Time Triggers: Implementing real-time triggers, Chatty pushes notifications instantly to users, ensuring they stay up-to-date with new matches and messages.
+Real-Time Triggers: Implementing real-time triggers, Connect pushes notifications instantly to users, ensuring they stay up-to-date with new matches and messages.
 
 <h1>Getting Started</h1>
 Follow these steps to get started with Chatty:
@@ -31,7 +31,7 @@ Follow these steps to get started with Chatty:
 
 4. Start the development server using `npm start`.
 
-5. Explore and customize the Chatty app to meet your requirements.
+5. Explore and customize the Connect app to meet your requirements.
 
 <h1>Technologies Used</h1>
 Chatty is built using the following technologies:
