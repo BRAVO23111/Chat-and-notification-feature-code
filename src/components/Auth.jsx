@@ -1,44 +1,63 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { auth, Provider } from "../firebase-config";
-import { signInWithPopup } from "firebase/auth";
 import Cookies from "universal-cookie";
 import { Helmet } from "react-helmet";
+import { signInWithRedirect, getRedirectResult } from "firebase/auth";
+import ClipLoader from "react-spinners/ClipLoader";
 
-const Cookie = new Cookies();
-const Auth = ({ setisAuth }) => {
+const cookies = new Cookies();
+
+const Auth = ({ setIsAuth, setLoading }) => {
   const signin = async () => {
     try {
-      const result = await signInWithPopup(auth, Provider);
-      Cookie.set("auth-token", result.user.refreshToken);
-      console.log(result.user.photoURL);
-      setisAuth(true);
+      setLoading(true);
+      await signInWithRedirect(auth, Provider);
     } catch (err) {
-      console.log("error");
+      console.error("Error during sign-in:", err);
+      setLoading(false);
     }
   };
 
-  const backgroundImageStyle = {
-    backgroundImage: 'url("img.jpeg")',
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-  };
+  useEffect(() => {
+    const handleRedirectResult = async () => {
+      try {
+        const result = await getRedirectResult(auth);
+        if (result && result.user) {
+          cookies.set("auth-token", result.user.refreshToken);
+          setIsAuth(true);
+        }
+      } catch (err) {
+        console.error("Error handling redirect result:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    handleRedirectResult();
+
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        cookies.set("auth-token", user.refreshToken);
+        setIsAuth(true);
+        setLoading(false);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [setIsAuth, setLoading]);
 
   return (
-    <div
-    
-      className="flex justify-center items-center"
-    >
+    <div className="flex justify-center items-center min-h-screen">
       <Helmet>
         <link
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
           rel="stylesheet"
         />
       </Helmet>
-      <div className="w-full bg-white p-8 rounded shadow-lg text-center font-montserrat ">
-        <h1 className="text-2xl font-semibold font-monsterat  mb-4">Welcome to CHATTY</h1>
+      <div className="w-full bg-white p-8 rounded shadow-lg text-center font-montserrat">
+        <h1 className="text-2xl font-semibold mb-4">Welcome to Connect</h1>
         <p className="text-m mb-4 font-bold">
-          Chatty is a user-friendly chat application designed to facilitate
+          Connect is a user-friendly chat application designed to facilitate
           seamless communication among friends and users within a shared virtual
           space.
         </p>
