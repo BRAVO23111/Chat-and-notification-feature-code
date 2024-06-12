@@ -1,45 +1,39 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { auth, Provider } from "../firebase-config";
 import Cookies from "universal-cookie";
 import { Helmet } from "react-helmet";
-import { signInWithRedirect, getRedirectResult } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const cookies = new Cookies();
 
 const Auth = ({ setIsAuth, setLoading }) => {
+  const [loading, setLoadingState] = useState(false);
+
   const signin = async () => {
     try {
       setLoading(true);
-      await signInWithRedirect(auth, Provider);
+      setLoadingState(true);
+      const result = await signInWithPopup(auth, Provider);
+      if (result && result.user) {
+        cookies.set("auth-token", result.user.refreshToken);
+        setIsAuth(true);
+        setLoadingState(false);
+      }
     } catch (err) {
       console.error("Error during sign-in:", err);
       setLoading(false);
+      setLoadingState(false);
     }
   };
 
   useEffect(() => {
-    const handleRedirectResult = async () => {
-      try {
-        const result = await getRedirectResult(auth);
-        if (result && result.user) {
-          cookies.set("auth-token", result.user.refreshToken);
-          setIsAuth(true);
-        }
-      } catch (err) {
-        console.error("Error handling redirect result:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    handleRedirectResult();
-
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         cookies.set("auth-token", user.refreshToken);
         setIsAuth(true);
         setLoading(false);
+        setLoadingState(false);
       }
     });
 
@@ -68,6 +62,11 @@ const Auth = ({ setIsAuth, setLoading }) => {
         >
           Sign in with Google
         </button>
+        {loading && (
+          <div className="flex justify-center items-center mt-4">
+            <ClipLoader size={35} color={"#123abc"} loading={loading} />
+          </div>
+        )}
       </div>
     </div>
   );
