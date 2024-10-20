@@ -1,8 +1,8 @@
 Connect is a real-time chat application built using React and Firebase, designed to facilitate seamless communication and instant notifications between users. Whether you're connecting with friends, making new connections, or staying in touch with loved ones, Connect makes chat and notifications easy and engaging.
 
 Objective
-The primary objective of Connect is to create a robust real-time chat and notifications feature, providing users with the ability to send and receive chat messages instantly. Additionally, users should receive notifications for new matches (talk requests) and incoming messages. We've divided the project into two main components: frontend and backend.
-<img width="500" src="https://i.imghippo.com/files/suCXy1729409172.png" alt="Screenshot-2024-10-20-at-12-50-28-PM" border="0">
+The primary objective of Connect is to create a robust real-time chat and notifications feature, providing users with the ability to send and receive chat messages instantly. Additionally, users should receive notifications for new matches (talk requests) and incoming messages. We've divided the project into two main components: frontend and backend.<br>
+<img width="700" src="https://i.imghippo.com/files/suCXy1729409172.png" alt="Screenshot-2024-10-20-at-12-50-28-PM" border="0">
 Features
 Frontend
 Real-Time Chat: Connect's Chat component allows users to send and receive real-time messages, ensuring smooth and instant communication.
